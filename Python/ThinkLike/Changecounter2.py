@@ -1,3 +1,5 @@
+#asks user to input amount of cash and returns denominations
+
 changerem=input('Amount of cash to be given in cents ')
 
 #name, value in cents, quantity remaining
