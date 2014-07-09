@@ -12,3 +12,15 @@
 
    
 #    Answer: 4194eb91842c8e7e6df099ca73c38f28
+
+#Fibonacci
+def F():
+    a, b = 1 , 2
+    while b < 4000000:
+        if b % 2 == 0:
+    		yield b
+        a, b = b, a + b
+
+
+test = F()
+print sum(test)
