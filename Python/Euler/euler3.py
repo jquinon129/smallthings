@@ -14,3 +14,10 @@ for i in range(int(x ** .5)+1):		#range avoids repeats
 				print '%r is NOT a prime' % b
 
 
+# n = 600851475143
+# f = 3
+# 	while f**2 <= n:
+# 		while n % f == 0:
+# 			n = n / f
+# 	f += 2
+# print n
