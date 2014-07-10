@@ -8,7 +8,7 @@ b = 0
 for i in range(int(x ** .5)+1):		#range avoids repeats
 	if (x % (i+1) == 0):
 		b = i+1
-		print '%r is a factor' % b	#finds if it's NOT a prime
+		print '%r is a factor' % b	#finds if it's a composite
 		for i in range(3,int(b ** .5)+1,2):
 			if  (b % i == 0):
 				print '%r is NOT a prime' % b
