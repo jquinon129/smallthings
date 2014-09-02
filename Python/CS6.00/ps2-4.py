@@ -46,3 +46,33 @@ def choose_word(wordlist):
 wordlist = load_words()
 
 # your code begins here!
+
+word = list(choose_word(wordlist))
+ans = list('_' * len(word))
+guess = 10
+used = list()
+print word
+check = 0
+
+while True:
+    letter = raw_input('>Choose a letter: ')
+    for i in range(len(word)):
+        if letter == word[i]:
+            ans[i] = letter
+            check = 1
+    if check == 0:
+        guess -= 1 
+    elif check ==1:
+        check = 0
+    used += list(letter)
+    print 'Remaining guesses: %r' % guess
+    print 'Letters Used: %r' % ''.join(used)  
+    print ' '.join(ans)
+    if word == ans:
+        print 'YOU WIN'
+        break
+    elif guess <= 0:
+        print 'YOU LOSE'
+        print 'The word was: %r' %''.join(word)
+        break
+        
