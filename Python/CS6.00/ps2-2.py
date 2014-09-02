@@ -8,5 +8,6 @@ def compute_deriv(poly):
 		res = res + (poly[i] * i, )
 	return res
 
-poly = (-13.39, 0.0, 17.5, 3.0, 1.0) 
+poly = [-13.39, 0.0, 17.5, 3.0, 1.0]
 print compute_deriv(poly)
+
