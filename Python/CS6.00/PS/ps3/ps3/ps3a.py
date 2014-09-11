@@ -64,6 +64,7 @@ def get_frequency_dict(sequence):
 def get_word_score(word, n):
     score = 0
     word = list(word)
+    
     for i in word:
         score += SCRABBLE_LETTER_VALUES[i] * len(word)
     if len(word) == n:
@@ -138,25 +139,10 @@ def deal_hand(n):
 # Problem #2: Update a hand by removing letters
 #
 def update_hand(hand, word):
-    """
-    Assumes that 'hand' has all the letters in word.
-	In other words, this assumes that however many times
-	a letter appears in 'word', 'hand' has at least as
-	many of that letter in it. 
-
-    Updates the hand: uses up the letters in the given word
-    and returns the new hand, without those letters in it.
-
-    Has no side effects: does not modify hand.
-
-    word: string
-    hand: dictionary (string -> int)    
-    returns: dictionary (string -> int)
-    """
-    word = list(word)
-    for i in word:
-        hand[i] -= 1
-    return hand 
+	word = list(word)
+	for i in word:
+		hand[i] -= 1
+	return hand 
 
     # TO DO ...
 
@@ -164,15 +150,6 @@ def update_hand(hand, word):
 # Problem #3: Test word validity
 #
 def is_valid_word(word, hand, word_list):
-    """
-    Returns True if word is in the word_list and is entirely
-    composed of letters in the hand. Otherwise, returns False.
-    Does not mutate hand or word_list.
-    
-    word: string
-    hand: dictionary (string -> int)
-    word_list: list of lowercase strings
-    """
 
     word_dic = get_frequency_dict(word)
     
@@ -184,7 +161,6 @@ def is_valid_word(word, hand, word_list):
     
     else: 
         return False
-
 
     # TO DO...
 
@@ -198,33 +174,22 @@ def calculate_handlen(hand):
 # Problem #4: Playing a hand
 #
 def play_hand(hand, word_list):
+	total_score = 0
+	while True:
+		display_hand(hand)
+		input_word = raw_input('Enter word or a "." to indicate you are finished: ')
+		
+		if input_word == '.' or calculate_handlen(hand) == 0:
+			print "Total Score: %r" % total_score
+			break
 
-    """
-    Allows the user to play the given hand, as follows:
+		elif is_valid_word(input_word, hand, word_list) == True:
+			hand = update_hand(hand, input_word)
+			score = get_word_score(input_word, HAND_SIZE)
+			print ('%r earned %r points.') % (input_word, score)
+			total_score+= score
+			print ('Total score: %r \n') % total_score
 
-    * The hand is displayed.
-    
-    * The user may input a word.
-
-    * An invalid word is rejected, and a message is displayed asking
-      the user to choose another word.
-
-    * When a valid word is entered, it uses up letters from the hand.
-
-    * After every valid word: the score for that word is displayed,
-      the remaining letters in the hand are displayed, and the user
-      is asked to input another word.
-
-    * The sum of the word scores is displayed when the hand finishes.
-
-    * The hand finishes when there are no more unused letters.
-      The user can also finish playing the hand by inputing a single
-      period (the string '.') instead of a word.
-
-      hand: dictionary (string -> int)
-      word_list: list of lowercase strings
-      
-    """
     # TO DO ...
 
 #
@@ -232,20 +197,24 @@ def play_hand(hand, word_list):
 # Make sure you understand how this code works!
 # 
 def play_game(word_list):
-    """
-    Allow the user to play an arbitrary number of hands.
+	hand = deal_hand(HAND_SIZE)
+	hand_original= hand.copy()
+	
+	while True:
+		input_mode = raw_input("Input 'n'ew 'r'etry or 'e'xit: ")
+		
+		if input_mode =='n':
+			hand = deal_hand(HAND_SIZE)
+			hand_original = hand.copy()
+			play_hand(hand, word_list)
+		elif input_mode == 'r':
+			hand = hand_original.copy()
+			play_hand(hand, word_list)
+		elif input_mode == 'e':
+			break
+		else:
+			pass
 
-    * Asks the user to input 'n' or 'r' or 'e'.
-
-    * If the user inputs 'n', let the user play a new (random) hand.
-      When done playing the hand, ask the 'n' or 'e' question again.
-
-    * If the user inputs 'r', let the user play the last hand again.
-
-    * If the user inputs 'e', exit the game.
-
-    * If the user inputs anything else, ask them again.
-    """
     # TO DO...
 
 #

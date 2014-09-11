@@ -9,6 +9,21 @@ from perm import *
 #
 #
 def comp_choose_word(hand, word_list):
+    permutations = []
+    score = 0
+    selected_word = None
+    
+    for i in range(calculate_handlen(hand)):
+        permutations += get_perms(hand, i+1)
+    
+    for i in permutations:
+         if i in word_list:
+            if get_word_score(i, HAND_SIZE) > score:
+                score = get_word_score(i, HAND_SIZE)
+                selected_word = i
+
+    return selected_word
+
     """
 	Given a hand and a word_dict, find the word that gives the maximum value score, and return it.
    	This word should be calculated by considering all possible permutations of lengths 1 to HAND_SIZE.
@@ -22,6 +37,26 @@ def comp_choose_word(hand, word_list):
 # Problem #6B: Computer plays a hand
 #
 def comp_play_hand(hand, word_list):
+    score = 0
+    tot_score = 0
+    
+    while True:
+        display_hand(hand)
+        selected_word = comp_choose_word(hand, word_list)
+        if selected_word != None:
+            print 'The selected word is:', selected_word
+            score = get_word_score(selected_word, HAND_SIZE)
+            print 'The score of the word is: ', score
+            tot_score += score
+            hand = update_hand(hand, selected_word)
+
+        elif selected_word == None:
+            break
+
+
+    print 'No more words available'
+    print 'The final score is: ', tot_score
+
     """
      Allows the computer to play the given hand, as follows:
 
@@ -47,6 +82,37 @@ def comp_play_hand(hand, word_list):
 #
 #
 def play_game(word_list):
+    hand = deal_hand(HAND_SIZE)
+    hand_original = hand.copy() 
+    while True:
+        input_mode = raw_input("Input 'n'ew 'r'etry or 'e'xit: ")
+        
+        if input_mode == 'e':
+            break
+       
+        player_mode = raw_input("'u'ser or 'c'omputer: ")
+        
+        if player_mode == 'u':
+            if input_mode =='n':
+                hand = deal_hand(HAND_SIZE)
+                hand_original = hand.copy()
+                play_hand(hand, word_list)
+            elif input_mode == 'r':
+                hand = hand_original.copy()
+                play_hand(hand, word_list)
+            else:
+                pass
+        elif player_mode == 'c':
+            if input_mode == 'n':
+                hand = deal_hand(HAND_SIZE)
+                hand_original = hand.copy()
+                comp_play_hand(hand, word_list)
+            elif input_mode == 'r':
+                hand = hand_original.copy()
+                comp_play_hand(hand, word_list)
+            else:
+                pass
+
     """Allow the user to play an arbitrary number of hands.
 
     1) Asks the user to input 'n' or 'r' or 'e'.
