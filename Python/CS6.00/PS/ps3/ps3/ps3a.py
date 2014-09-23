@@ -140,9 +140,10 @@ def deal_hand(n):
 #
 def update_hand(hand, word):
 	word = list(word)
+	#hand_new = hand.copy()
 	for i in word:
-		hand[i] -= 1
-	return hand 
+		hand[i] -= 1 #hand_new
+	return hand #hand_new
 
     # TO DO ...
 
