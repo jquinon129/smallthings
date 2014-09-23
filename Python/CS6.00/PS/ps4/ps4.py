@@ -265,9 +265,50 @@ def apply_shift(text, shift):
 #
 def find_best_shift(wordlist, text):
     real_words = 0
+    temp = 0
     best_shift = 0
-    for i in range(28):
-        print apply_coder(text, build_decoder(i))
+    new_cypher_text = ''
+    clean_cypher = []
+
+    for i in range(27):
+        new_cypher_text = apply_coder(text, build_decoder(i))
+        
+        for c in new_cypher_text:
+            if c.isalnum() or c.isspace():
+                clean_cypher.append(c)
+            else:
+                clean_cypher.append('')
+        decoded_text = ''.join(clean_cypher)
+        decoded_text = decoded_text.lower()
+        decoded_text = decoded_text.split()
+        clean_cypher = []
+
+        for a in decoded_text:
+            if a in wordlist:
+                real_words += 1
+            if real_words > temp:
+                temp = real_words
+                best_shift = i
+        real_words = 0
+        
+
+    return best_shift
+
+
+
+
+
+# strs = "hello, world!"
+# lis = []
+# for c in strs:
+#     if c.isalnum() or c.isspace():
+#         lis.append(c)
+#     else:
+#         lis.append(' ')
+
+# new_strs = "".join(lis)
+# print new_strs           #print 'Johnny Appleseed is a good farmer'
+# print new_strs.split()         #prints ['Johnny', 'Appleseed', 'is', 'a', 'good', 'farmer
     
 
 	
