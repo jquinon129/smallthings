@@ -1,0 +1,10 @@
+def FizzBuzz(number):
+	if number % 3 == 0:
+		if number % 5 == 0:
+			print 'fizz buzz'
+			return
+		print 'fizz'
+	elif number % 5 == 0:
+		print 'buzz'
+
+FizzBuzz(30)

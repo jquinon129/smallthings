@@ -1,6 +1,12 @@
 from ps4 import *
 
-print find_best_shift(wordlist, 'Pmttw,hdwztl!')
+
+# for i in range(28):
+# 	print len(apply_shift('Do Androids Dream of Electric Sheep?', i))
+
+t = apply_shifts("Do Androids Dream of Electric Sheep?", [(0,6), (3, 18), (12, 16)])
+print t
+print 'JufYkaolfapxQdrnzmasmRyrpfdvpmEurrb?'
 
 
 

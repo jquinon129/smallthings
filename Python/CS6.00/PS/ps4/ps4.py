@@ -333,8 +333,15 @@ def find_best_shift(wordlist, text):
 # Problem 3: Multi-level encryption.
 #
 def apply_shifts(text, shifts):
-   pass
-    
+    new_text = list(text)
+    final_text = new_text[:]
+    for i in shifts:
+        new_text = apply_shift(new_text, i[1])
+        final_text[i[0]: ] = new_text[i[0] :]
+    return ''.join(final_text)
+       
+
+        
     # """
     # Applies a sequence of shifts to an input text.
 
@@ -358,61 +365,68 @@ def apply_shifts(text, shifts):
 
 
 def find_best_shifts(wordlist, text):
-    """
-    Given a scrambled string, returns a shift key that will decode the text to
-    words in wordlist, or None if there is no such key.
+    pass
+    # s = list(text)
+    # for i in range(27):
 
-    Hint: Make use of the recursive function
-    find_best_shifts_rec(wordlist, text, start)
 
-    wordlist: list of words
-    text: scambled text to try to find the words for
-    returns: list of tuples.  each tuple is (position in text, amount of shift)
+    # """
+    # Given a scrambled string, returns a shift key that will decode the text to
+    # words in wordlist, or None if there is no such key.
+
+    # Hint: Make use of the recursive function
+    # find_best_shifts_rec(wordlist, text, start)
+
+    # wordlist: list of words
+    # text: scambled text to try to find the words for
+    # returns: list of tuples.  each tuple is (position in text, amount of shift)
     
-    Examples:
-    >>> s = random_scrambled(wordlist, 3)
-    >>> s
-    'eqorqukvqtbmultiform wyy ion'
-    >>> shifts = find_best_shifts(wordlist, s)
-    >>> shifts
-    [(0, 25), (11, 2), (21, 5)]
-    >>> apply_shifts(s, shifts)
-    'compositor multiform accents'
-    >>> s = apply_shifts("Do Androids Dream of Electric Sheep?", [(0,6), (3, 18), (12, 16)])
-    >>> s
-    'JufYkaolfapxQdrnzmasmRyrpfdvpmEurrb?'
-    >>> shifts = find_best_shifts(wordlist, s)
-    >>> print apply_shifts(s, shifts)
-    Do Androids Dream of Electric Sheep?
-    """
+    # Examples:
+    # >>> s = random_scrambled(wordlist, 3)
+    # >>> s
+    # 'eqorqukvqtbmultiform wyy ion'
+    # >>> shifts = find_best_shifts(wordlist, s)
+    # >>> shifts
+    # [(0, 25), (11, 2), (21, 5)]
+    # >>> apply_shifts(s, shifts)
+    # 'compositor multiform accents'
+    # >>> s = apply_shifts("Do Androids Dream of Electric Sheep?", [(0,6), (3, 18), (12, 16)])
+    # >>> s
+    # 'JufYkaolfapxQdrnzmasmRyrpfdvpmEurrb?'
+    # >>> shifts = find_best_shifts(wordlist, s)
+    # >>> print apply_shifts(s, shifts)
+    # Do Androids Dream of Electric Sheep?
+    # """
 
 def find_best_shifts_rec(wordlist, text, start):
-    """
-    Given a scrambled string and a starting position from which
-    to decode, returns a shift key that will decode the text to
-    words in wordlist, or None if there is no such key.
+    pass
+    # """
+    # Given a scrambled string and a starting position from which
+    # to decode, returns a shift key that will decode the text to
+    # words in wordlist, or None if there is no such key.
 
-    Hint: You will find this function much easier to implement
-    if you use recursion.
+    # Hint: You will find this function much easier to implement
+    # if you use recursion.
 
-    wordlist: list of words
-    text: scambled text to try to find the words for
-    start: where to start looking at shifts
-    returns: list of tuples.  each tuple is (position in text, amount of shift)
-    """
+    # wordlist: list of words
+    # text: scambled text to try to find the words for
+    # start: where to start looking at shifts
+    # returns: list of tuples.  each tuple is (position in text, amount of shift)
+    # """
     ### TODO.
 
 
 def decrypt_fable():
-     """
-    Using the methods you created in this problem set,
-    decrypt the fable given by the function get_fable_string().
-    Once you decrypt the message, be sure to include as a comment
-    at the end of this problem set how the fable relates to your
-    education at MIT.
+    pass
+    #  """
+    # Using the methods you created in this problem set,
+    # decrypt the fable given by the function get_fable_string().
+    # Once you decrypt the message, be sure to include as a comment
+    # at the end of this problem set how the fable relates to your
+    # education at MIT.
 
-    returns: string - fable in plain text
-    """
+    # returns: string - fable in plain text
+    # """
     ### TODO.
 
 
